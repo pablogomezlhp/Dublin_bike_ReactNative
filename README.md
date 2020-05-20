@@ -49,7 +49,7 @@ As a user, I would like to see a simple application straight to the point(Statio
 
 ### Navigation
 
-Navigation buildes with stack-navigation
+Navigation builded with stack-navigation
 
 * Phones
 iPhone 5/SE
