@@ -8,6 +8,7 @@ import Directions from '../Directions';
 import backImage from '../../assets/back.png';
 import bike from '../../assets/bike.png';
 
+//Importing Style
 import {
   Back,
   LocationBox,
@@ -27,6 +28,7 @@ import {
 export default class Map extends Component {
   constructor() {
     const resultt = [];
+    //Getting stations from API
 
     results[0].map((stations) => {
       const resultado = stations;
@@ -48,6 +50,8 @@ export default class Map extends Component {
     distance: null,
   };
   async componentDidMount() {
+    //Getting live position
+
     navigator.geolocation.getCurrentPosition(
       ({coords: {latitude, longitude}}) => {
         this.setState({
@@ -85,8 +89,9 @@ export default class Map extends Component {
     this.setState({destination: null});
   };
   render() {
+    //Creating consts to use in a map/marker
+
     const {region, destination, duration, location, distance} = this.state;
-    console.log(destination);
     return (
       <View style={{flex: 1}}>
         <MapView
@@ -101,6 +106,8 @@ export default class Map extends Component {
           loadingEnabled
           ref={(el) => (this.mapView = el)}>
           {this.state.stations.map((station) => (
+            //Rendering a stations array using .map(Marker)
+
             <Marker
               coordinate={{
                 latitude: station.position.lat,
@@ -122,6 +129,7 @@ export default class Map extends Component {
                 }}
                 destination={destination}
                 onReady={(result) => {
+                  //Getting a travel duration and.
                   this.setState({duration: Math.floor(result.duration) * 1.5});
                   this.setState({distance: result.distance});
                   this.mapView.fitToCoordinates(result.coordinates, {
@@ -135,6 +143,8 @@ export default class Map extends Component {
                 }}
               />
               <Marker
+                //Rendering a destination Description
+
                 coordinate={destination}
                 anchor={{x: 0, y: 0}}
                 image={require('../../assets/base.png')}>
@@ -166,7 +176,7 @@ export default class Map extends Component {
               <Image source={backImage} />
             </Back>
             <ContainerD>
-              <TypeTitle>Do you need go to {destination.title}?</TypeTitle>
+              <TypeTitle>Do you need to go to {destination.title}?</TypeTitle>
 
               {/* <TypeImage source={bike} /> */}
               <TypeDescription>

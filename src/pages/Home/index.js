@@ -4,7 +4,9 @@ import {Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import logoImg from '../../assets/logo.png';
 import familyImg from '../../assets/Group.png';
+
 import Button from '../../components/Button';
+
 const Home = () => {
   const navigation = useNavigation();
   return (
